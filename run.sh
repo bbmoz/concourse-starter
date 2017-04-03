@@ -24,6 +24,11 @@ start () {
   docker-compose ps
 }
 
+stop () {
+  set -x
+  docker-compose stop
+}
+
 all () {
   set -x
   tunnel
@@ -36,7 +41,8 @@ cat <<EOF
   Usage:
     tunnel|t    start tunnel
     keys|k      generate keys
-    start|s     start concourse
+    start|sta   start concourse
+    stop|sto    stop concourse
     all|a       start tunnel, generate keys, and start concourse
     *           see usage
 EOF
@@ -45,7 +51,8 @@ EOF
 case $1 in
   tunnel|t)   tunnel    ;;
   keys|k)     keys      ;;
-  start|s)    start     ;;
+  start|sta)  start     ;;
+  stop|sto)   stop      ;;
   all|a)      all       ;;
   *)          usage     ;;
 esac
